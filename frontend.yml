@@ -14,18 +14,18 @@
 
     - name: Delete existing App content
       ansible.builtin.file:
-        path: /user/share/nginx/html
+        path: /usr/share/nginx/html
         state: absent
 
-    - name: create application directory
+    - name: Create application directory
       ansible.builtin.file:
-      path: /user/share/nginx/html
+      path: /usr/share/nginx/html
       state: directory
 
     - name: Download and extract application content
       ansible.builtin.unarchive:
         src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
-        dest: /user/share/nginx/html
+        dest: /usr/share/nginx/html
         remote_src: yes
 
     - name: Enable service Nginx
