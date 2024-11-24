@@ -33,29 +33,3 @@
         name: nginx
         enabled: true
         state: restarted
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    - name: Enable service httpd and ensure it is not masked
-      ansible.builtin.systemd_service:
-        name: httpd
-        enabled: true
-        state: restarted
