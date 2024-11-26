@@ -1,69 +1,66 @@
--name : Backend Setup
-hosts : all
-because : yes
-tasks :
-  - name: Disable Existing Nodejs.
-    ansible.builtin.shell: dnf module disable mysql -y
+- name : Backend Setup
+  hosts : all
+  because : yes
+  tasks :
+    - name: Disable Existing Nodejs.
+      ansible.builtin.shell: dnf module disable mysql -y
 
-  - name: Enable NODEJS18 Version"
-    ansible.builtin.shell: dnf module enable nodejs:18 -y
+    - name: Enable NODEJS18 Version"
+      ansible.builtin.shell: dnf module enable nodejs:18 -y
 
-  - name: Install NodeJS
-    ansible.builtin.dnf:
-      name: nodejs
-      state: installed
+    - name: Install NodeJS
+      ansible.builtin.dnf:
+        name: nodejs
+        state: installed
 
-  - name: Configure Backend Service
-    ansible.builtin.copy:
-      src: backend.service
-      dest: /etc/systemd/system/backend.service
+    - name: Configure Backend Service
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
 
-  - name: Add the user 'expense'
-    ansible.builtin.user:
-      name: expense
+    - name: Add the user 'expense'
+      ansible.builtin.user:
+        name: expense
 
-  - name: Delete existing App content
-    ansible.builtin.file:
-      path: /app
-      state: absent
+    - name: Delete existing App content
+      ansible.builtin.file:
+        path: /app
+        state: absent
 
-  - name: Create App Directory
-    ansible.builtin.file:
-      path: /app
-      state: directory
+    - name: Create App Directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
 
-  - name: Download and extract application content
-    ansible.builtin.unarchive:
-      src: https://expense-artifacts.s3.amazonaws.com/backend.zip
-      dest: /app
-      remote_src: yes
+    - name: Download and extract application content
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/backend.zip
+        dest: /app
 
-  - name: downloading application dependencies
-    community.general.npm:
-      path: /app
+    - name: downloading application dependencies
+      community.general.npm:
+        path: /app
 
-  - name: reloading the systemd and start backend server
-    ansible.builtin.systemd_service:
-      name: backend
-      enabled: true
-      state: restarted
+    - name: reloading the systemd and start backend server
+      ansible.builtin.systemd_service:
+        name: backend
+        enabled: true
+        state: restarted
 
-  - name: install mysql client
-    ansible.builtin.dnf:
-      name: mysql
-      state: installed
+    - name: install mysql client
+      ansible.builtin.dnf:
+        name: mysql
+        state: installed
 
-  - name: Install Python library for MySQL.
-    ansible.builtin.dnf:
-      name: python3-PyMySQL
-      state: installed
+    - name: Install Python library for MySQL.
+      ansible.builtin.dnf:
+        name: python3-PyMySQL
+        state: installed
 
-  - name: load schema
-    community.mysql.mysql_db:
-      state: import
-      name: all
-      target: /tmp/dump.sql
-      login_user: root
-      login_password: Expense@1
-
-#      this is backend
+    - name: load schema
+      community.mysql.mysql_db:
+        state: import
+        name: all
+        target: /tmp/dump.sql
+        login_user: root
+        login_password: Expense@1
