@@ -48,7 +48,7 @@
         enabled: true
         state: restarted
 
-    - name: install mysql client
+    - name: Install MySL client
       ansible.builtin.dnf:
         name: mysql
         state: installed
