@@ -48,10 +48,13 @@
         enabled: true
         state: restarted
 
+    - name: Reset MySQL
+      ansible.builtin.shell: sudo dnf module reset mysql -y
+
     - name: Install MySQL client
       ansible.builtin.dnf:
         name: mysql
-        state: present
+        state: installed
 
     - name: Install Python library for MySQL
       ansible.builtin.dnf:
