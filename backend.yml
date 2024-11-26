@@ -48,22 +48,22 @@
         enabled: true
         state: restarted
 
-#    - name: Install Python MySQL Client
-#      ansible.builtin.pip:
-#        name:
-#          -PyMySQL
-#          -cryptography
-#        executable: pip3.12
+    - name: Install Python MySQL Client
+      ansible.builtin.pip:
+        name:
+          -PyMySQL
+          -cryptography
+        executable: pip3.12
 
     - name: Install MySQL Client
       ansible.builtin.dnf:
         name: mysql.x86_64
         state: installed
 
-    - name: Install Python library for MySQL
-      ansible.builtin.dnf:
-        name: python3-PyMySQL
-        state: installed
+#    - name: Install Python library for MySQL
+#      ansible.builtin.dnf:
+#        name: python3-PyMySQL
+#        state: installed
 
     - name: load schema
       community.mysql.mysql_db:
