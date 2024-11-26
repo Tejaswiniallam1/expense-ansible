@@ -57,7 +57,7 @@
 
     - name: Install MySQL Client
       ansible.builtin.dnf:
-        name: mysql.x86_64
+        name: mysql-client
         state: installed
 
 #    - name: Install Python library for MySQL
