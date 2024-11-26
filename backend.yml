@@ -50,10 +50,10 @@
 
     - name: Install MySQL client
       ansible.builtin.dnf:
-        name: mysql
+        src: mysql
         state: installed
 
-    - name: Install Python library for MySQL.
+    - name: Install Python library for MySQL
       ansible.builtin.dnf:
         name: python3-PyMySQL
         state: installed
