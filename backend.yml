@@ -54,7 +54,7 @@
         name: python3-PyMySQL
         state: installed
 
-    - name: Install MySQL client
+    - name: Install MySQL client -y
       ansible.builtin.dnf:
         name: mysql
         state: installed
