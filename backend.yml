@@ -59,10 +59,18 @@
 #      ansible.builtin.dnf:
 #        name: mysql-client
 #        state: installed
-    - name: Install MySQL client
+#    - name: Install MySQL client
+#      dnf:
+#        name: mysql-client
+#        state: present
+
+    - name: Install MySQL client without modular filtering
       dnf:
-        name: mysql-client
+        name: mysql
         state: present
+        disable_gpg_check: yes
+        enablerepo: "AppStream"
+
 
     - name: Install Python library for MySQL
       ansible.builtin.dnf:
