@@ -8,7 +8,6 @@ tasks :
   - name: Enable NODEJS18 Version"
     ansible.builtin.shell: dnf module enable nodejs:18 -y
 
-
   - name: Install NodeJS
     ansible.builtin.dnf:
       name: nodejs
@@ -52,6 +51,11 @@ tasks :
   - name: install mysql client
     ansible.builtin.dnf:
       name: mysql
+      state: installed
+
+  - name: Install Python library for MySQL.
+    ansible.builtin.dnf:
+      name: python3-PyMySQL
       state: installed
 
   - name: load schema
