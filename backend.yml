@@ -1,7 +1,7 @@
-- name : Backend Setup
-  hosts : all
-  because : yes
-  tasks :
+- name: Backend Setup
+  hosts: all
+  because: yes
+  tasks:
     - name: Disable Existing Nodejs.
       ansible.builtin.shell: dnf module disable mysql -y
 
