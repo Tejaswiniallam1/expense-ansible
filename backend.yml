@@ -55,22 +55,14 @@
 #          -cryptography
 #        executable: pip3.12
 
-#    - name: Install MySQL Client
-#      ansible.builtin.dnf:
-#        name: mysql-client
-#        state: installed
-#    - name: Install MySQL client
-#      dnf:
-#        name: mysql-client
-#        state: present
-
-    - name: Install MySQL client without modular filtering
-      dnf:
-        name: mysql
+#   - name: Install MySQL Client
+#     ansible.builtin.dnf:
+#       name: mysql-client
+#       state: installed
+    - name: Install MySQL client
+      ansible.builtin.dnf dnf:
+        name: mysql-client
         state: present
-        disable_gpg_check: yes
-        enablerepo: "AppStream"
-
 
     - name: Install Python library for MySQL
       ansible.builtin.dnf:
