@@ -20,9 +20,10 @@ pipelines:
             deployment:
               timeout: 0
               tasks:
-                - exec:
-                    command: ls -l
-                    run_if: passed
+                - exec: ls
+                  arguments:
+                    - -l
+                    - -A
 
 
 
