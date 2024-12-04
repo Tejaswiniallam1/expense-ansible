@@ -7,18 +7,17 @@ pipelines:
     display_order: -1
     materials:
       ansible:
-        git: https://github.com/Tejaswiniallam1/expense-ansible.git
+        git: https://github.com/Tejaswiniallam1/expense-ansible
         shallow_clone: false
         auto_update: true
         branch: main
     stages:
-      - dev-stage:
+      - dev:
           fetch_materials: true
           approval:
             type: manual
-            allow_only_on_success: false
           jobs:
-            deploy:
+            deployment:
               timeout: 0
               tasks:
                 - exec:
