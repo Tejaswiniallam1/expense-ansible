@@ -23,19 +23,6 @@ pipelines:
                 - exec:
                     command: ls -l
                     run_if: passed
-#      - UAT-stage:
-#          fetch_materials: true
-#          keep_artifacts: false
-#          clean_workspace: false
-#          approval:
-#            type: success
-#            allow_only_on_success: false
-#          jobs:
-#            test-job:
-#              timeout: 0
-#              tasks:
-#                - exec:
-#                    command: ls
-#                    run_if: passed
+
 
 
