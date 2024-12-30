@@ -32,6 +32,7 @@
     name: backend
     enabled: true
     state: restarted
+    daemon-reload: yes
 
 - name: Reset MySQL
   ansible.builtin.shell: sudo dnf module reset mysql -y
